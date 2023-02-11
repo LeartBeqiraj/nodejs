@@ -1,6 +1,6 @@
 steps:
   - name: "gcr.io/cloud-builders/npm"
-    args: ["install"]
+    args: ["install ../application"]
 
   - name: "gcr.io/cloud-builders/npm"
     args: ["start"]
