@@ -6,7 +6,7 @@ steps:
       [
         "build",
         "-t",
-        "gcr.io/$_PROJECT_ID/my-image",
+        "gcr.io/$_PROJECT_ID/nodejs-app",
         "-f",
         "cicd/Dockerfile",
         ".",
