@@ -5,7 +5,7 @@ FROM node:14
 WORKDIR /app
 
 # Copy the app's source code to the container
-COPY application/ .
+COPY app/ .
 
 # Install the app's dependencies
 RUN npm install
