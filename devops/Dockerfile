@@ -7,7 +7,6 @@ WORKDIR /app
 RUN pwd
 
 # RUN ls ../
-
 RUN ls
 
 # # Copy the package.json and package-lock.json files to the container
