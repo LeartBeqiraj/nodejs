@@ -7,7 +7,7 @@ steps:
         "gcr.io/$_PROJECT_ID/nodejs-app",
         "-f",
         "cicd/Dockerfile",
-        "/",
+        ".",
       ]
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$_PROJECT_ID/nodejs-app"]
