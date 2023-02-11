@@ -21,3 +21,4 @@ app.get("/whoami", (req, res) => {
 });
 
 app.listen(3000, () => console.log(`Application listening on port 3000`));
+console.log("Life is good")
