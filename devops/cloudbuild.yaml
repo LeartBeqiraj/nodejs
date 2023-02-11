@@ -1,8 +1,17 @@
+# steps:
+#   - name: "gcr.io/cloud-builders/npm"
+#     args: ["install", "--prefix", "../application/"]
+
+#   - name: "gcr.io/cloud-builders/npm"
+#     args: ["start", "--prefix", "../application/"]
+
+# images: ["gcr.io/$PROJECT_ID/my-app"]
 steps:
-  - name: "gcr.io/cloud-builders/npm"
-    args: ["install", "--prefix", "../application/"]
+  - name: "gcr.io/cloud-builders/bash"
+    args: ["-c", "pwd"]
 
-  - name: "gcr.io/cloud-builders/npm"
-    args: ["start", "--prefix", "../application/"]
+  - name: "gcr.io/cloud-builders/bash"
+    args: ["-c", "ls"]
 
-images: ["gcr.io/$PROJECT_ID/my-app"]
+  - name: "gcr.io/cloud-builders/bash"
+    args: ["-c", "ls.."]
