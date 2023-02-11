@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/whoami", (req, res) => {
-  res.send("I am Full Stack DevOps Engineer at 21");
+  res.send("I am Full Stack DevOps Engineer");
   traffic(req.url);
 });
 
