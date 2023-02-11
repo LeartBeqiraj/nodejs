@@ -7,11 +7,11 @@
 
 # images: ["gcr.io/$PROJECT_ID/my-app"]
 steps:
-  - name: "gcr.io/cloud-builders/bash"
+  - name: "bash"
     args: ["-c", "pwd"]
 
-  - name: "gcr.io/cloud-builders/bash"
+  - name: "bash"
     args: ["-c", "ls"]
 
-  - name: "gcr.io/cloud-builders/bash"
+  - name: "bash"
     args: ["-c", "ls.."]
