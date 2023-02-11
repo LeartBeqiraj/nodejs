@@ -4,6 +4,8 @@ FROM node:14
 # Set the working directory in the container
 WORKDIR /app
 
+RUN ls
+
 # Copy the package.json and package-lock.json files to the container
 # COPY ../application/package*.json ./
 
