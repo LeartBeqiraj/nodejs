@@ -4,16 +4,20 @@ FROM node:14
 # Set the working directory in the container
 WORKDIR /app
 
+RUN pwd
+
+# RUN ls ../
+
 RUN ls
 
-# Copy the package.json and package-lock.json files to the container
-# COPY ../application/package*.json ./
+# # Copy the package.json and package-lock.json files to the container
+# # COPY ../application/package*.json ./
 
-# Install the app's dependencies
-# RUN npm install
+# # Install the app's dependencies
+# # RUN npm install
 
-# Copy the rest of the app's source code to the container
-COPY ../application/ .
+# # Copy the rest of the app's source code to the container
+# COPY ../application/ .
 
-# Specify the command to run when the container starts
-CMD [ "npm", "start", "--prefix", "../application/" ]
+# # Specify the command to run when the container starts
+# CMD [ "npm", "start", "--prefix", "../application/" ]
