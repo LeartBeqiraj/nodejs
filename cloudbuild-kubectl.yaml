@@ -1,0 +1,32 @@
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
+    entrypoint: '/bin/sh'
+    args: ['-c', './restore-cache']
+  - name: node:12.21.0
+    id: 'npm-install'
+    entrypoint: npm
+    args: [ 'install']
+  - name: node:12.21.0
+    id: 'build-npm'
+    args: [ '--max-old-space-size=10240', 'node_modules/@angular/cli/bin/ng', 'build', '--configuration=$_CONFIGURATION', '--prod', '--stats-json']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', '$_IMAGE_NAME/$_ENV:$TAG_NAME', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '$_IMAGE_NAME/$_ENV:$TAG_NAME']
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: 'bash'
+    args:
+    - '-eEuo'
+    - 'pipefail'
+    - '-c'
+    - |-
+      gcloud container clusters get-credentials $_GKE_CLUSTER --project=$_GOOGLE_PROJECT --region=$_GKE_LOCATION
+      imageDigest=$(gcloud container images describe $_IMAGE_NAME/$_ENV:$TAG_NAME --format 'value(image_summary.digest)')
+      kubectl patch deploy $_K8S_APP_NAME -n $_K8S_NAMESPACE --type=json -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/image", "value":'$_IMAGE_NAME/$_ENV@$imageDigest'}]'
+timeout: 1800s
+options:
+  env:
+    # Point npm caches to a persistent location
+    - npm_app=$_APP_NAME
+  substitutionOption: ALLOW_LOOSE
+  machineType: 'N1_HIGHCPU_32'

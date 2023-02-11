@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: nodejs
-  name: nodejs-app-np
+  name: nodejs-app-lb
   namespace: nodejs
 spec:
   ports:
@@ -13,4 +13,4 @@ spec:
   selector:
     app: nodejs
   sessionAffinity: None
-  type: NodePort
+  type: LoadBalancer

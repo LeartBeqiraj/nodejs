@@ -6,7 +6,7 @@ metadata:
   labels:
     app: nodejs
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: nodejs
@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: nodejs
-          image: 38348150201/nodejs:v1
+          image: gcr.io/leartbeqiraj/nodejs-app@sha256:4c0dae7bcdd476e79d68ad858c5c4a4982f20a7cd5df1605cf5db532ae26667e
           ports:
             - containerPort: 3000

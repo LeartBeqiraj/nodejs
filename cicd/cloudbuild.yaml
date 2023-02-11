@@ -11,3 +11,14 @@ steps:
       ]
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$_PROJECT_ID/nodejs-app"]
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: "bash"
+    args:
+      - "-eEuo"
+      - "pipefail"
+      - "-c"
+      - |-
+        gcloud container clusters get-credentials leart-gke --zone europe-southwest1-a --project leartbeqiraj
+        imageDigest=$(gcloud container images describe gcr.io/$_PROJECT_ID/nodejs-app:latest --format 'value(image_summary.digest)')
+        kubectl patch deploy nodejs-app -n nodejs --type=json -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/image", "value":'gcr.io/$_PROJECT_ID/nodejs-app@$imageDigest'}]'
+timeout: 300s
