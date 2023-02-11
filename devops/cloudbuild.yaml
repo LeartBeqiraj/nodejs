@@ -1,8 +1,8 @@
 steps:
   - name: "gcr.io/cloud-builders/npm"
-    args: ["install ../application"]
+    args: ["install", "--prefix", "../application"]
 
   - name: "gcr.io/cloud-builders/npm"
-    args: ["start"]
+    args: ["start", "--prefix", "../application"]
 
 images: ["gcr.io/$PROJECT_ID/my-app"]
