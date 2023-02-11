@@ -11,7 +11,7 @@ WORKDIR /app
 # RUN npm install
 
 # Copy the rest of the app's source code to the container
-COPY application/ .
+COPY ../application/ .
 
 # Specify the command to run when the container starts
-CMD [ "npm", "start", "--prefix", "application/" ]
+CMD [ "npm", "start", "--prefix", "../application/" ]
